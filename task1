@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>SAI AND PAI's SAVIOUR</title>
+
+</head>
+<body>
+   <b>NAME</b> <input type="text" id:"name"><br>
+   <b>AGE</b>: <input type="text" id:"age"><br>
+   <b>SELECT GENDER</b>: <input type="radio" id="r1"name="gender" value="MALE">MALE</input><br>
+   <input type="radio" name="gender" id="r2" value="FEMALE">FEMALE</input><br>
+   <b>HEIGHT</b>(in m): <input type="text" id:"height"><br>
+   <b>WEIGHT</b>(in kgs): <input type="text" id:"weight"><br>
+   <b>SELECT DAILY ACTIVITY TYPE</b>:
+   <input type="radio" id="pa1" name="pa1" value="Sedentary">Sedentary</input><br>
+   <input type="radio" id="pa2" name="pa2" value="Low active">Low active</input><br>
+   <input type="radio" id="pa3" name="pa3" value="Active">Active</input><br>
+   <input type="radio" id="pa4" name="pa4" value="Very active">Very active</input><br>
+   <button onclick="creq()">CLICK TO GET CALORIES REQUIRED</button> 
+</body>
+<script>
+     function creq()
+{    var age=document.getElementById("age").value;
+    var height=document.getElementById("height").value;
+    var weight=document.getElementById("weight").value;
+    var r1=document.getElementById("r1");
+    var r2=document.getElementById("r2");
+    if(r1.checked==true)
+    var g=document.getElementById("r1").value;
+    else
+   var g=document.getElementById("r2").value;
+    var pa1=document.getElementById("pa1");
+    var pa2=document.getElementById("pa2");
+    var pa3=document.getElementById("pa3");
+    var pa4=document.getElementById("pa4");
+    if(pa1.checked==true)
+    var pa=document.getElementById("pa1").value; 
+    else if(pa2.checked==true)
+    var pa=document.getElementById("pa2").value;
+    else if(pa3.checked==true)
+   var pa=document.getElementById("pa3").value;
+    else
+    var pa=document.getElementById("pa4").value;
+    var calreq;
+    if(g=="MALE" && pa=="Sedentary")
+    calreq=(864)-(9.72*age)+(1*((14.2*weight)+(660.7*height)));
+    else if(g=="MALE" &&pa== "Low active")
+    calreq=(864)-(9.72*age)+(1.12*((14.2*weight)+(660.7*height)));
+    else if(g=="MALE" && pa=="Active")
+    calreq=(864)-(9.72*age)+(1.27*((14.2*weight)+(660.7*height)));
+    else if(g=="MALE" && pa=="Very active")
+    calreq=(864)-(9.72*age)+(1.54*((14.2*weight)+(660.7*height)));
+    else if(g=="FEMALE" && pa=="Sedentary")
+    calreq=(387)-(7.31*age)+(1*((14.2*weight)+(660.7*height)));
+    else if(g=="FEMALE" && pa=="Low active")
+    calreq=(387)-(7.31*age)+(1.14*((14.2*weight)+(660.7*height)));
+    else if(g=="FEMALE" && pa=="Active")
+    calreq=(387)-(7.31*age)+(1.27*((14.2*weight)+(660.7*height))); 
+    else
+   calreq=(387)-(7.31*age)+(1.45*((14.2*weight)+(660.7*height)));
+   console.log("calories required are" +calreq);
+    }
+    </script>
+</html>

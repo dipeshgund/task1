@@ -1,25 +1,46 @@
 <html>
 <head>
 <title>SAI AND PAI's SAVIOUR</title>
-
 </head>
 <body>
-   <b>NAME</b> <input type="text" id:"name"><br>
-   <b>AGE</b>: <input type="text" id:"age"><br>
+   <b>NAME</b>:<input type="text" id="name"><br>
+   <b>AGE</b>: <input type="text" id="age"><br>
    <b>SELECT GENDER</b>: <input type="radio" id="r1"name="gender" value="MALE">MALE</input><br>
    <input type="radio" name="gender" id="r2" value="FEMALE">FEMALE</input><br>
-   <b>HEIGHT</b>(in m): <input type="text" id:"height"><br>
-   <b>WEIGHT</b>(in kgs): <input type="text" id:"weight"><br>
+   <b>HEIGHT</b>(in m): <input type="text" id="height"><br>
+   <b>WEIGHT</b>(in kgs): <input type="text" id="weight"><br>
    <b>SELECT DAILY ACTIVITY TYPE</b>:
-   <input type="radio" id="pa1" name="pa1" value="Sedentary">Sedentary</input><br>
-   <input type="radio" id="pa2" name="pa2" value="Low active">Low active</input><br>
-   <input type="radio" id="pa3" name="pa3" value="Active">Active</input><br>
-   <input type="radio" id="pa4" name="pa4" value="Very active">Very active</input><br>
-   <button onclick="creq()">CLICK TO GET CALORIES REQUIRED</button> 
-</body>
-<script>
+   <input type="radio" id="pa1" class="pa" value="Sedentary">Sedentary</input><br>
+   <input type="radio" id="pa2" class="pa" value="Low active">Low active</input><br>
+   <input type="radio" id="pa3" class="pa" value="Active">Active</input><br>
+   <input type="radio" id="pa4" class="pa" value="Very active">Very active</input><br>
+   <button onclick="creq()">CLICK TO GET CALORIES REQUIRED</button> <br>
+   <br>
+   <hr>
+   <table id="table" align="center" border=2>
+      <thead ><b>FOOD ITEMS CONSUMED WITH CONTENTS:-</b></thead>
+      <br>
+      <form onsubmit="foodtable(); return false;">
+           <input type="number" placeholder="Enter serial number" id="sno" min="1"><br>
+           <input type="text" placeholder="Enter Food Item" id="fitem"><br>
+           <input type="text"  id="ccontent" placeholder="Enter Calories Content"><br>
+            <input type="text"  id="fcontent" placeholder="Enter Fat Content"><br>
+            <input type="text"  id="carbscontent" placeholder="Enter Carbohydrates Content"><br>
+           <input type="submit" value="CLICK TO ADD IN TABLE">
+      <tr>
+         <td align="center"><b> S.no.</b></td>
+         <td align="center"><b>Food Item</b></td>  
+         <td align="center"><b>Calories Content</b></td>  
+         <td align="center"><b>Fat Content</b></td>
+         <td align="center"><b>Carbs Content</b></td>    
+      </tr>
+   </table>
+    <br>
+   <hr></body>
+<script> 
      function creq()
-{    var age=document.getElementById("age").value;
+   { 
+      var age=document.getElementById("age").value;
     var height=document.getElementById("height").value;
     var weight=document.getElementById("weight").value;
     var r1=document.getElementById("r1");
@@ -27,37 +48,49 @@
     if(r1.checked==true)
     var g=document.getElementById("r1").value;
     else
-   var g=document.getElementById("r2").value;
-    var pa1=document.getElementById("pa1");
-    var pa2=document.getElementById("pa2");
-    var pa3=document.getElementById("pa3");
-    var pa4=document.getElementById("pa4");
-    if(pa1.checked==true)
-    var pa=document.getElementById("pa1").value; 
-    else if(pa2.checked==true)
-    var pa=document.getElementById("pa2").value;
-    else if(pa3.checked==true)
-   var pa=document.getElementById("pa3").value;
+   var g=document.getElementById("r2").value; 
+   var pa=document.getElementsByClassName("pa");
+   for(var i=0;i<pa.length;i++)
+   {
+      if(pa[i].checked==true)
+      {
+       var Pa=pa[i].value;
+       break;
+       }
+   }
+   var calreq;  
+    if(g=="MALE" && Pa=="Sedentary")
+    calreq=((864)-(9.72*age)+(1*((14.2*weight)+(660.7*height)))); 
+    else if(g=="MALE" && Pa== "Low active")
+    calreq=((864)-(9.72*age)+(1.12*((14.2*weight)+(660.7*height))));
+    else if(g=="MALE" && Pa=="Active")
+    calreq=((864)-(9.72*age)+(1.27*((14.2*weight)+(660.7*height))));
+    else if(g=="MALE" && Pa=="Very active")
+    calreq=((864)-(9.72*age)+(1.54*((14.2*weight)+(660.7*height))));
+    else if(g=="FEMALE" && Pa=="Sedentary")
+    calreq=((387)-(7.31*age)+(1*((10.9*weight)+(660.7*height))));
+    else if(g=="FEMALE" && Pa=="Low active")
+    calreq=((387)-(7.31*age)+(1.14*((10.9*weight)+(660.7*height))));
+    else if(g=="FEMALE" && Pa=="Active")
+    calreq=((387)-(7.31*age)+(1.27*((10.9*weight)+(660.7*height))));
     else
-    var pa=document.getElementById("pa4").value;
-    var calreq;
-    if(g=="MALE" && pa=="Sedentary")
-    calreq=(864)-(9.72*age)+(1*((14.2*weight)+(660.7*height)));
-    else if(g=="MALE" &&pa== "Low active")
-    calreq=(864)-(9.72*age)+(1.12*((14.2*weight)+(660.7*height)));
-    else if(g=="MALE" && pa=="Active")
-    calreq=(864)-(9.72*age)+(1.27*((14.2*weight)+(660.7*height)));
-    else if(g=="MALE" && pa=="Very active")
-    calreq=(864)-(9.72*age)+(1.54*((14.2*weight)+(660.7*height)));
-    else if(g=="FEMALE" && pa=="Sedentary")
-    calreq=(387)-(7.31*age)+(1*((14.2*weight)+(660.7*height)));
-    else if(g=="FEMALE" && pa=="Low active")
-    calreq=(387)-(7.31*age)+(1.14*((14.2*weight)+(660.7*height)));
-    else if(g=="FEMALE" && pa=="Active")
-    calreq=(387)-(7.31*age)+(1.27*((14.2*weight)+(660.7*height))); 
-    else
-   calreq=(387)-(7.31*age)+(1.45*((14.2*weight)+(660.7*height)));
-   console.log("calories required are" +calreq);
+   calreq=((387)-(7.31*age)+(1.45*((14.2*weight)+(660.7*height)))); 
+   alert("CALORIES REQUIRED ARE:"+calreq);
+    }
+    function foodtable()
+    {
+      var table=document.getElementById("table");
+      var row=table.insertRow();
+      var cell1=row.insertCell();
+      var cell2=row.insertCell();
+      var cell3=row.insertCell();
+      var cell4=row.insertCell();
+      var cell5=row.insertCell();
+      cell1.innerHTML=document.getElementById("sno").value;
+      cell2.innerHTML=document.getElementById("fitem").value;
+      cell3.innerHTML=document.getElementById("ccontent").value;
+      cell4.innerHTML=document.getElementById("fcontent").value;
+      cell5.innerHTML=document.getElementById("carbscontent").value;
     }
     </script>
 </html>
